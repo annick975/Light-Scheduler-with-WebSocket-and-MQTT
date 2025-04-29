@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Light Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>IoT Light Scheduler</h1>
+        <div class="card">
+            <h2>Schedule Light</h2>
+            <div class="form-group">
+                <label for="onTime">ON Time:</label>
+                <input type="time" id="onTime" required>
+            </div>
+            <div class="form-group">
+                <label for="offTime">OFF Time:</label>
+                <input type="time" id="offTime" required>
+            </div>
+            <button id="submitBtn">Set Schedule</button>
+            <div id="status" class="status"></div>
+        </div>
+        <div class="card">
+            <h2>Current Status</h2>
+            <div class="light-status">
+                <div id="lightIndicator" class="light-off"></div>
+                <p id="lightState">Light is OFF</p>
+            </div>
+            <div class="schedule-info">
+                <p>ON Time: <span id="currentOnTime">Not set</span></p>
+                <p>OFF Time: <span id="currentOffTime">Not set</span></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
