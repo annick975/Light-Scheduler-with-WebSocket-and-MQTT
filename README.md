@@ -144,6 +144,8 @@ python -m http.server 8000
 
 Then open your browser and navigate to `http://localhost:8000`.
 
+(or Go Live using the LIve Server extension)
+
 ## Usage
 
 1. Open the web interface in your browser
@@ -171,12 +173,4 @@ Then open your browser and navigate to `http://localhost:8000`.
 - Verify the correct serial port is being detected
 - Ensure the baud rate matches (9600) between Arduino and subscriber
 
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgements
-
-- WebSockets library for Python
-- Mosquitto MQTT broker
-- Arduino community for relay control examples
