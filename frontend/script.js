@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
     });
     
-    // Helper Functions
+    
     function updateLightStatus(isOn) {
-        // First remove both classes
+        
         lightIndicator.classList.remove('light-on', 'light-off');
         
-        // Add the appropriate class with a slight delay for animation effect
+       
         setTimeout(() => {
             if (isOn) {
                 lightIndicator.classList.add('light-on');

@@ -49,7 +49,7 @@ def setup_serial():
         return False
     
     try:
-        # Connect with 9600 baud rate (must match Arduino sketch)
+        # Connect with 9600 baud rate 
         serial_port = serial.Serial(port, 9600, timeout=2)
         time.sleep(2)  # Wait for Arduino to reset after connection
         logger.info(f"Connected to Arduino on {port}")
@@ -66,12 +66,12 @@ def send_command_to_arduino(command):
         return False
     
     try:
-        # Add newline to command for Arduino readLine() function
+        
         cmd_bytes = (str(command) + '\n').encode('utf-8')
         serial_port.write(cmd_bytes)
         serial_port.flush()
         
-        # Read response (optional)
+    
         response = serial_port.readline().decode('utf-8').strip()
         if response:
             logger.info(f"Arduino response: {response}")
@@ -79,7 +79,7 @@ def send_command_to_arduino(command):
         return True
     except Exception as e:
         logger.error(f"Error sending command to Arduino: {e}")
-        # Try to reconnect
+        
         serial_port.close()
         serial_port = None
         return False
@@ -90,7 +90,7 @@ def on_mqtt_message(topic, message):
     
     try:
         if topic == "light/command":
-            # Direct command to turn light on/off
+            
             command = message.strip()
             if command in ['0', '1']:
                 logger.info(f"Sending command to Arduino: {command}")
@@ -99,7 +99,7 @@ def on_mqtt_message(topic, message):
                 logger.warning(f"Invalid light command: {command}. Expected 0 or 1.")
                 
         elif topic == "light/schedule":
-            # Schedule update - no direct action needed as server handles timing
+            
             logger.info(f"Schedule update received: {message}")
             try:
                 schedule = json.loads(message)
@@ -125,22 +125,22 @@ def mqtt_subscribe():
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            bufsize=1  # Line buffered
+            bufsize=1  
         )
         
         logger.info(f"MQTT subscriber started, subscribed to topics: light/command, light/schedule")
         
         while running:
-            # Read stdout line by line
+            
             output = process.stdout.readline().strip()
             if output:
-                # Split into topic and message
+            
                 parts = output.split(' ', 1)
                 if len(parts) == 2:
                     topic, message = parts
                     on_mqtt_message(topic, message)
             
-            # Check if process is still running
+            
             if process.poll() is not None:
                 stderr = process.stderr.read()
                 if stderr:
@@ -170,7 +170,7 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 if __name__ == "__main__":
-    # Set up signal handlers for graceful shutdown
+
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     
