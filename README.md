@@ -144,7 +144,7 @@ python -m http.server 8000
 
 Then open your browser and navigate to `http://localhost:8000`.
 
-(or Go Live using the LIve Server extension)
+(or Go Live using the Live Server extension)
 
 ## Usage
 
